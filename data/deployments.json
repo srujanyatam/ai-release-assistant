@@ -1,0 +1,23 @@
+
+{
+  "deployments": [
+    {
+      "deployment_id": "DEP-001",
+      "application": "demo-app",
+      "environment": "development",
+      "version": "v1.0.0",
+      "commit_sha": "abc1234",
+      "status": "success",
+      "deployed_at": "2026-11-21T10:30:00"
+    },
+    {
+      "deployment_id": "DEP-002",
+      "application": "demo-app",
+      "environment": "staging",
+      "version": "v1.1.0",
+      "commit_sha": "def5678",
+      "status": "failed",
+      "deployed_at": "2026-11-21T11:15:00"
+    }
+  ]
+}
