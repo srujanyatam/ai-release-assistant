@@ -46,16 +46,17 @@ class WebhookTests(unittest.TestCase):
 
     def setUp(self):
         self.client = TestClient(main.app)
-
-        self.secret_patch = patch.object(
-            main,
-            "GITHUB_WEBHOOK_SECRET",
-            TEST_SECRET,
-        )
-        self.secret_patch.start()
+        self.patches = [
+            patch.object(main, "GITHUB_WEBHOOK_SECRET", TEST_SECRET),
+            patch.object(main, "GITHUB_OWNER", "srujanyatam"),
+            patch.object(main, "GITHUB_REPO", "ai-release-assistant"),
+        ]
+        for patcher in self.patches:
+            patcher.start()
 
     def tearDown(self):
-        self.secret_patch.stop()
+        for patcher in reversed(self.patches):
+            patcher.stop()
 
     def test_valid_failure_webhook(self):
         payload = json.dumps(
